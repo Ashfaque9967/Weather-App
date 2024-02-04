@@ -73,4 +73,4 @@ To become familiar with the issue and pull request process, follow the steps bel
 8. **Merge Pull Request:**
     - After approval, merge the pull request.
 
-This practice test is designed to make you familiar with the workflow of contributing to the project. Remember, this is a simulation, and the issue and branch names are just examples. Please check the actual issues in the repository for practice.
+This practice test is designed to make you familiar with the workflow of contributing to the project.
