@@ -77,6 +77,29 @@ public class WeatherApp {
 
     // fetchApiResponse() -> atharva
 
+    private static HttpURLConnection fetchApiResponse(String urlString){
+        try{
+            // attempt to create connection
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            // set request method to get
+            conn.setRequestMethod("GET");
+
+            // connect to our API
+            conn.connect();
+            return conn;
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        // could not make connection
+        return null;
+    }
+
+
+
+
     // findIndexOfCurrentTime() -> umer
 
     // getCurrentTime() -> sahil
