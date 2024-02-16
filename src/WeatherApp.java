@@ -1,15 +1,15 @@
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+// import org.json.simple.JSONArray;
+// import org.json.simple.JSONObject;
+// import org.json.simple.parser.JSONParser;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
+// import java.io.IOException;
+// import java.net.HttpURLConnection;
+// import java.net.URL;
+// import java.time.LocalDateTime;
+// import java.time.format.DateTimeFormatter;
+// import java.util.Scanner;
 
-public class WeatherApp {
+// public class WeatherApp {
 
     // un-comment after writing getLocationData() -> ashhab
 //    public static JSONObject getWeatherData(String locationName){
@@ -77,25 +77,25 @@ public class WeatherApp {
 
     // fetchApiResponse() -> atharva
 
-    private static HttpURLConnection fetchApiResponse(String urlString){
-        try{
-            // attempt to create connection
-            URL url = new URL(urlString);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    // private static HttpURLConnection fetchApiResponse(String urlString){
+    //     try{
+    //         // attempt to create connection
+    //         URL url = new URL(urlString);
+    //         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-            // set request method to get
-            conn.setRequestMethod("GET");
+    //         // set request method to get
+    //         conn.setRequestMethod("GET");
 
-            // connect to our API
-            conn.connect();
-            return conn;
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+    //         // connect to our API
+    //         conn.connect();
+    //         return conn;
+    //     }catch(IOException e){
+    //         e.printStackTrace();
+    //     }
 
-        // could not make connection
-        return null;
-    }
+    //     // could not make connection
+    //     return null;
+    // }
 
 
 
@@ -103,9 +103,22 @@ public class WeatherApp {
     // findIndexOfCurrentTime() -> umer
 
     // getCurrentTime() -> sahil
+    // private static String getCurrentTime(){
+    //     // get current date and time
+    //     LocalDateTime currentDateTime = LocalDateTime.now();
+
+    //     // format date to be 2023-09-02T00:00 (this is how is is read in the API)
+    //     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH':00'");
+
+    //     // format and print the current date and time
+    //     String formattedDateTime = currentDateTime.format(formatter);
+
+    //     return formattedDateTime;
+    // }
+
 
     // convertWeatherCode() -> ashfaque
-}
+    //}
 
 
 
