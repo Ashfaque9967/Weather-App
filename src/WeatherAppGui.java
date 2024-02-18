@@ -151,7 +151,7 @@ public class WeatherAppGui extends JFrame {
 //        add(searchButton);
 //    }
 
-// UMER AFTER WRITING YOUR CODE UNCOMMENT ATHARV CODE AND 34 LINE 
+// UMER, AFTER WRITING YOUR CODE UNCOMMENT ATHARV CODE AND 34 LINE
 
     // loadImage() -> umer
 }

@@ -11,68 +11,69 @@ import java.util.Scanner;
 
 public class WeatherApp {
 
-    // un-comment after writing getLocationData() -> ashhab
-//    public static JSONObject getWeatherData(String locationName){
-//        JSONArray locationData = getLocationData(locationName);
-//
-//        JSONObject location = (JSONObject) locationData.get(0);
-//        double latitude = (double) location.get("latitude");
-//        double longitude = (double) location.get("longitude");
-//
-//        String urlString = "https://api.open-meteo.com/v1/forecast?" +
-//                "latitude=" + latitude + "&longitude=" + longitude +
-//                "&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m&timezone=America%2FLos_Angeles";
-//
-//        try{
-//            HttpURLConnection conn = fetchApiResponse(urlString);
-//
-//            if(conn.getResponseCode() != 200){
-//                System.out.println("Error: Could not connect to API");
-//                return null;
-//            }
-//
-//            StringBuilder resultJson = new StringBuilder();
-//            Scanner scanner = new Scanner(conn.getInputStream());
-//            while(scanner.hasNext()){
-//                resultJson.append(scanner.nextLine());
-//            }
-//
-//            scanner.close();
-//
-//            conn.disconnect();
-//
-//            JSONParser parser = new JSONParser();
-//            JSONObject resultJsonObj = (JSONObject) parser.parse(String.valueOf(resultJson));
-//
-//            JSONObject hourly = (JSONObject) resultJsonObj.get("hourly");
-//
-//            JSONArray time = (JSONArray) hourly.get("time");
-//
-//            JSONArray temperatureData = (JSONArray) hourly.get("temperature_2m");
+    public static JSONObject getWeatherData(String locationName){
+        JSONArray locationData = getLocationData(locationName);
+
+        JSONObject location = (JSONObject) locationData.get(0);
+        double latitude = (double) location.get("latitude");
+        double longitude = (double) location.get("longitude");
+
+        String urlString = "https://api.open-meteo.com/v1/forecast?" +
+                "latitude=" + latitude + "&longitude=" + longitude +
+                "&hourly=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m&timezone=America%2FLos_Angeles";
+
+        try{
+            HttpURLConnection conn = fetchApiResponse(urlString);
+
+            if(conn.getResponseCode() != 200){
+                System.out.println("Error: Could not connect to API");
+                return null;
+            }
+
+            StringBuilder resultJson = new StringBuilder();
+            Scanner scanner = new Scanner(conn.getInputStream());
+            while(scanner.hasNext()){
+                resultJson.append(scanner.nextLine());
+            }
+
+            scanner.close();
+
+            conn.disconnect();
+
+            JSONParser parser = new JSONParser();
+            JSONObject resultJsonObj = (JSONObject) parser.parse(String.valueOf(resultJson));
+
+            JSONObject hourly = (JSONObject) resultJsonObj.get("hourly");
+
+            JSONArray time = (JSONArray) hourly.get("time");
+//            int index = findIndexOfCurrentTime(time);
+
+            JSONArray temperatureData = (JSONArray) hourly.get("temperature_2m");
 //            double temperature = (double) temperatureData.get(index);
-//
-//            JSONArray weathercode = (JSONArray) hourly.get("weathercode");
-//
-//            JSONArray relativeHumidity = (JSONArray) hourly.get("relativehumidity_2m");
+
+            JSONArray weathercode = (JSONArray) hourly.get("weathercode");
+//            String weatherCondition = convertWeatherCode((long) weathercode.get(index));
+
+            JSONArray relativeHumidity = (JSONArray) hourly.get("relativehumidity_2m");
 //            long humidity = (long) relativeHumidity.get(index);
-//
-//            JSONArray windspeedData = (JSONArray) hourly.get("windspeed_10m");
+
+            JSONArray windspeedData = (JSONArray) hourly.get("windspeed_10m");
 //            double windspeed = (double) windspeedData.get(index);
-//
-//            JSONObject weatherData = new JSONObject();
+
+            JSONObject weatherData = new JSONObject();
 //            weatherData.put("temperature", temperature);
 //            weatherData.put("weather_condition", weatherCondition);
 //            weatherData.put("humidity", humidity);
 //            weatherData.put("windspeed", windspeed);
-//
-//            return weatherData;
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-//
-//        return null;
-//    }
 
+            return weatherData;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+//
     // getLocationData() -> ashhab
     public static JSONArray getLocationData(String locationName){
         // replace any whitespace in location name to + to adhere to API's request format
@@ -146,6 +147,7 @@ public class WeatherApp {
 
 
     // findIndexOfCurrentTime() -> umer
+    // After writing this function un-comment all the above comments
 
      private static String getCurrentTime(){
          // get current date and time
