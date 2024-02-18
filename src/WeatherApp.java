@@ -75,8 +75,6 @@ public class WeatherApp {
 
     // getLocationData() -> ashhab
 
-    // fetchApiResponse() -> atharva
-
     private static HttpURLConnection fetchApiResponse(String urlString){
         try{
             // attempt to create connection
@@ -98,26 +96,55 @@ public class WeatherApp {
     }
 
 
-
-
     // findIndexOfCurrentTime() -> umer
 
-    // getCurrentTime() -> sahil
+    private static int findIndexOfCurrentTime(JSONArray timeList){
+        String currentTime = getCurrentTime();
 
-    // private static String getCurrentTime(){
-    //     // get current date and time
-    //     LocalDateTime currentDateTime = LocalDateTime.now();
+        // iterate through the time list and see which one matches our current time
+        for(int i = 0; i < timeList.size(); i++){
+            String time = (String) timeList.get(i);
+            if(time.equalsIgnoreCase(currentTime)){
+                // return the index
+                return i;
+            }
+        }
 
-    //     // format date to be 2023-09-02T00:00 (this is how is is read in the API)
-    //     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH':00'");
+        return 0;
+    }
 
-    //     // format and print the current date and time
-    //     String formattedDateTime = currentDateTime.format(formatter);
+    private static String getCurrentTime(){
+         // get current date and time
+         LocalDateTime currentDateTime = LocalDateTime.now();
 
-    //     return formattedDateTime;
-    // }
+         // format date to be 2023-09-02T00:00 (this is how is is read in the API)
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH':00'");
 
-    // convertWeatherCode() -> ashfaque
+         // format and print the current date and time
+         String formattedDateTime = currentDateTime.format(formatter);
+
+         return formattedDateTime;
+     }
+
+    private static String convertWeatherCode(long weathercode){
+        String weatherCondition = "";
+        if(weathercode == 0L){
+            // clear
+            weatherCondition = "Clear";
+        }else if(weathercode > 0L && weathercode <= 3L){
+            // cloudy
+            weatherCondition = "Cloudy";
+        }else if((weathercode >= 51L && weathercode <= 67L)
+                || (weathercode >= 80L && weathercode <= 99L)){
+            // rain
+            weatherCondition = "Rain";
+        }else if(weathercode >= 71L && weathercode <= 77L){
+            // snow
+            weatherCondition = "Snow";
+        }
+
+        return weatherCondition;
+    }
 }
 
 
