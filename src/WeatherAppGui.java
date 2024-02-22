@@ -154,6 +154,19 @@ public class WeatherAppGui extends JFrame {
 // UMER, AFTER WRITING YOUR CODE UNCOMMENT ATHARV CODE AND 34 LINE
 
     // loadImage() -> umer
+    private ImageIcon loadImage(String resourcePath){
+        try{
+            // read the image file from the path given
+            BufferedImage image = ImageIO.read(new File(resourcePath));
+            // returns an image icon so that our component can render it
+            return new ImageIcon(image);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        System.out.println("Could not find resource");
+        return null;
+    }
+}
 }
 
 
